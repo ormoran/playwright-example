@@ -1,27 +1,27 @@
-# Zależności Node.js
+# Node.js dependencies
 node_modules/
 
-# Wyniki testów, raporty i artefakty Playwright
+# Playwright test results, reports, and artifacts
 /test-results/
 /playwright-report/
 /blob-report/
 /.last-run.json
 
-# Zmienne środowiskowe i poufne dane konfiguracyjne
+# Environment variables and private configuration
 .env
 .env.local
 
-# Pliki kompilacji (jeśli Twój projekt generuje czysty JS z TS)
+# Build output
 /dist/
 /build/
 
-# Logi systemowe i błędy npm / yarn
+# System logs and npm / yarn error logs
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 
-# Tymczasowe pliki systemowe (OS)
+# Temporary operating-system files
 .DS_Store
 Thumbs.db
 ehthumbs.db

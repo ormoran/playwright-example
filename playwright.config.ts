@@ -1,43 +1,43 @@
 import { defineConfig, devices } from '@playwright/test';
 
 export default defineConfig({
-  // Katalog, w którym Playwright szuka testów
+  // Directory where Playwright looks for tests
   testDir: './tests',
   
-  // Maksymalny czas trwania pojedynczego testu (np. 30 sekund)
+  // Maximum duration of a single test (for example, 30 seconds)
   timeout: 30 * 1000,
   
-  // Włączenie zrównoleglenia testów
+  // Run tests in parallel
   fullyParallel: true,
   
-  // Blokada użycia .only na środowisku CI
+  // Prevent accidental test.only usage in CI
   forbidOnly: !!process.env.CI,
   
-  // Liczba ponowień testu w przypadku awarii (na CI warto mieć 2, lokalnie 0)
+  // Retry failed tests twice in CI and never locally
   retries: process.env.CI ? 2 : 0,
   
-  // Liczba workerów (procesów równoległych)
+  // Use one worker in CI and the default locally
   workers: process.env.CI ? 1 : undefined,
   
-  // Konfiguracja raportów (domyślny raport HTML)
+  // Use the HTML reporter
   reporter: 'html',
 
-  // Globalne ustawienia dla kontekstu przeglądarki
+  // Shared browser context settings
   use: {
-    // Bazowy URL – możesz go używać w testach, podając ścieżki względne
+    // Base URL for relative paths in tests
     baseURL: 'https://www.wp.pl',
 
-    // Zapisuj ślad (trace) w przypadku pierwszego ponowienia lub awarii (super przydatne do debugowania)
+    // Record a trace on the first retry
     trace: 'on-first-retry',
 
-    // Automatycznie rób zrzut ekranu tylko wtedy, gdy test upadnie
+    // Take a screenshot only when a test fails
     screenshot: 'only-on-failure',
 
-    // Opcjonalnie: nagrywaj wideo z przebiegu testu w razie błędu
+    // Retain video only when a test fails
     video: 'retain-on-failure',
   },
 
-  // Konfiguracja przegródek / projektów testowych
+  // Browser projects
   projects: [
     {
       name: 'chromium',
@@ -49,7 +49,7 @@ export default defineConfig({
       use: { ...devices['Desktop Firefox'] },
     },
 
-    // Możesz odkomentować, jeśli chcesz testować też na WebKit (Safari)
+    // Uncomment to add WebKit (Safari) coverage
     // {
     //   name: 'webkit',
     //   use: { ...devices['Desktop Safari'] },
